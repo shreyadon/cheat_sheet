@@ -269,7 +269,7 @@ date.sunday? # => true if date is a Sunday.
 
 ### Class Array
 
-list of objects represeted with square brackets, [].
+list of objects represented with square brackets, [].
 
 
 **Creating an Array:**  
@@ -278,7 +278,7 @@ list of objects represeted with square brackets, [].
 or  
 `cities = [] # => cities = []` 
 
-**push:**  
+**.push method:**  
 Adds elements to an Array. 
 ```
 cities.push("Chicago")
@@ -336,7 +336,7 @@ Returns a new Array with the elements of the original Array but with the order s
 `nums.shuffle # => [3, 23, 8, 19, 1, 3]`
 
 **.sample method:**  
-Returns a random element from the array.
+Returns a random element from the array.  
 `nums.sample # => 23`
 
 **.min and .max methods:**  
@@ -345,5 +345,43 @@ Retrieve the elements of minimum and the maximum values in the array.
 `nums.last # => 23`
 
 **.sum method:**  
-Returns the sum of all the elements in the array. 
+Returns the sum of all the elements in the array.  
 `nums.sum # => 57`
+ 
+### Class Hash
+
+list of objects represented with curly brackets, {}. Unlike Arrays, each cell is not automatically numbered but given a label by us.
+
+#### Interlude: Class Symbol
+Symbols are a sequence of characters and are used to to label something internally in the code. They are created by starting them off with a colon and follow the same naming conventions as variables, `:hello`.  
+`:hello.class # => Symbol`  
+
+**Creating a Hash:**  
+`person1 = Hash.new`  
+or  
+`person2 = {}`
+
+**.store method:**  
+Adds elements to a Hash by taking two arguments, a label (or *key*) and a piece of data (or *value*). 
+```
+person1.store(:first_name, "Raghu")
+person1.store(:last_name, "Betina")
+person1.store(:role, "Instructor")
+# => person1 = {:first_name=>"Raghu", :last_name=>"Betina", :role=>"Instructor"}
+```
+or  
+`person2 = { :first_name => "Jocelyn", :last_name => "Williams", :role => "Student" }`
+
+***Note:***
+1. Ruby represents each key/value pair by separating them with a `=>`, known as a "hash rocket."
+2. If the key already exists when you try to `.store` something under it, its value will be replaced.
+
+**.fetch method:**  
+Retrieves the data held by a key.  
+`person1.fetch(:last_name)# => "Betina"`  
+`person2.[:last_name] # => "Williams"` 
+
+If `.fetch` is given key that is not present in the hash, it will throw an error. But `.[]` is given key that is not present in the hash, it returns nil. 
+
+Fallback: pass in a second default argument that `.fetch` will return if the key is not present in the hash.  
+`person1.fetch(:middle_name, "None provided") # => "None provided"`
