@@ -10,6 +10,11 @@ Returns the class of the object.
 `2.class # => Integer`  
 `2.3.class # => Float`
 
+Creating a new variable of a Class:  
+```
+ var = Class.new
+ str = String.new
+ ```
 
 #### Exceptions:
 There are a few methods that do not follow the core syntax.
@@ -28,20 +33,16 @@ Will pause the program and wait for the user to type something in the terminal a
 **Math operations:**  
 These will be covered in the Integer and Float sections.
 
-**rand**  
+**rand:**  
 returns a random integer within a range when given an integer as an argument.  
 `rand(3) # returns a whole number between 0 and 2`  
 returns a random decimal between 0 and 1 when not given any argument.  
 `rand # returns a decimal between 0 and 1`  
 
-Creating a new variable of a Class:  
-```
- var = Class.new
- str = String.new
- ```
-
 ### Class String
 
+
+Ignore: Add notes on String interpolation. 
 **.concat (.+ / +) method:**  
 Appends the given arguments to a string. when given an integer as an argument, it converts the integer into ASCII code.  
 `"hi".concat(33)`
@@ -206,3 +207,62 @@ Converts a float to an integer by rounding the float down to closest whole numbe
 
 `"8.1".to_i`  
 >8
+
+### Class Date
+
+**Creating a Date:**  
+To use the Date class in a Ruby program, we need to say:  
+`require "date"`  
+
+**Date.new**  
+Use the `.new` method to create a new instance of a Date object. The `.new` method can be used with or without argument. When given no arguments, the default date is set to ***Jan 1st, -4712 BCE***.
+```
+Date.new                  # => #<Date: -4712-01-01 ((0j,0s,0n),+0s,2299161j)>
+Date.new(2001)            # => #<Date: 2001-01-01 ...>
+Date.new(2001,2,3)        # => #<Date: 2001-02-03 ...>
+Date.new(2001,2,-1)       # => #<Date: 2001-02-28 ...>
+```
+**Date.today**  
+Initializes a Date object to the current date.   
+`Date.today # => #<Date: 2019-04-16 ((2458590j,0s,0n),+0s,2299161j)>`  
+
+**Date.parse()* 
+Returns an Date object initialized to a date, interpreted from the given String argument.
+```
+Date.parse("2001-02-03") #=> #<Date: 2001-02-03 ...>
+Date.parse("20010203") #=> #<Date: 2001-02-03 ...>
+Date.parse("3rd Feb 2001") #=> #<Date: 2001-02-03 ...>
+```
+
+**Subtraction**
+Two dates can be subtracted from one another. The `-` operator returns a Rational which can be converted into an Integer to find the days in between the two dates.  
+```
+number_of_days = Date.today - Date.parse("July 4, 1776") 
+# => number_of_days = (88674/1)
+number_of_days.to_i # => 88674
+```
+
+**Date.mday**  
+Returns the day of the month (1-31).
+```
+held_on = Date.new(2001,2,3)
+held_on.mday # => 3
+```
+
+**Date.wday**  
+Returns the day of the week (0-6, Sunday is 0).
+```
+held_on = Date.new(2001,2,3)
+held_on.wday # => 6
+```
+**Days of the Week**  
+```
+date = Date.new
+date.monday? # => true if date is a Monday.
+date.tuesday? # => true if date is a Tuesday.
+date.wednesday? # => true if date is a Wednesday.
+date.thursday? # => true if date is a Thursday.
+date.friday? # => true if date is a Friday.
+date.saturday? # => true if date is a Saturday.
+date.sunday? # => true if date is a Sunday.
+```
