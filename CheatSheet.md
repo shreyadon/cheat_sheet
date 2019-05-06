@@ -226,15 +226,15 @@ Date.new(2001,2,-1)       # => #<Date: 2001-02-28 ...>
 Initializes a Date object to the current date.   
 `Date.today # => #<Date: 2019-04-16 ((2458590j,0s,0n),+0s,2299161j)>`  
 
-**Date.parse()* 
+**Date.parse()**  
 Returns an Date object initialized to a date, interpreted from the given String argument.
 ```
-Date.parse("2001-02-03") #=> #<Date: 2001-02-03 ...>
-Date.parse("20010203") #=> #<Date: 2001-02-03 ...>
-Date.parse("3rd Feb 2001") #=> #<Date: 2001-02-03 ...>
+Date.parse("2001-02-03") # => #<Date: 2001-02-03 ...>
+Date.parse("20010203") # => #<Date: 2001-02-03 ...>
+Date.parse("3rd Feb 2001") # => #<Date: 2001-02-03 ...>
 ```
 
-**Subtraction**
+**Subtraction**  
 Two dates can be subtracted from one another. The `-` operator returns a Rational which can be converted into an Integer to find the days in between the two dates.  
 ```
 number_of_days = Date.today - Date.parse("July 4, 1776") 
@@ -266,3 +266,84 @@ date.friday? # => true if date is a Friday.
 date.saturday? # => true if date is a Saturday.
 date.sunday? # => true if date is a Sunday.
 ```
+
+### Class Array
+
+list of objects represeted with square brackets, [].
+
+
+**Creating an Array:**  
+`.new` initializes a new empty Array.  
+`cities = Array.new # => cities = []`  
+or  
+`cities = [] # => cities = []` 
+
+**push:**  
+Adds elements to an Array. 
+```
+cities.push("Chicago")
+cities.push("Los Angeles")
+cities.push("New York City")
+```
+or  
+`cities = ["Chicago", "Los Angeles", "New York City"]`
+> cities = ["Chicago", "Los Angeles", "New York City"]
+
+**.at method:**  
+Takes an Integer argument and return the element in that position of an Array. The following lines of code show the various forms of the `.at` method and return the same output.  
+`cities.at(2)`  
+`cities.at[](2)`  
+`cities.[2]`  
+>"New York City"
+
+***Notes:***
+1. Ruby indexes the elements in an array starting at *zero*.
+2. Trying to access an element using an index greater than the length of the array will give you `nil`.  
+`cities.at(3) # => nil`
+3. Using a negative index will retrieve elements from the end of the least.   
+`cities.at(-1) # => "New York City"`  
+`cities.at(-2) # => "Los Angeles"`  
+`cities.at(-3) # => "Chicago"`   
+`cities.at(-4) # => nil` 
+
+**.first and .last methods:**  
+Retrieve the first and the last element of an array.  
+`cities.first # => "Chicago"`  
+`cities.last) # => "New York City"`
+
+**.index method:**  
+Returns the index of an element.  
+`cities.index("Los Angeles") # => 1`
+
+**.count method:**  
+Returns the number of elements in a list, when give no arguments. If given an argument, returns the number of times that arguments occurs in the array.
+```
+nums = [8, 3, 1, 19, 23, 3]
+nums.count # => 6
+nums.count(3) # => 2
+```
+
+**.reverse method:**  
+Returns a new Array with the elements of the original Array but in the reversed order.  
+`nums.reverse # => [3, 23, 19, 1, 3, 8]`
+
+**.sort method:**  
+Returns a new Array with the elements of the original Array but in the sorted in increasing order.  
+`nums.sort # => [1, 3, 3, 8, 19, 23]`
+
+**.shuffle method:**  
+Returns a new Array with the elements of the original Array but with the order shuffled randomly.  
+`nums.shuffle # => [3, 23, 8, 19, 1, 3]`
+
+**.sample method:**  
+Returns a random element from the array.
+`nums.sample # => 23`
+
+**.min and .max methods:**  
+Retrieve the elements of minimum and the maximum values in the array.  
+`nums.min # => 1`  
+`nums.last # => 23`
+
+**.sum method:**  
+Returns the sum of all the elements in the array. 
+`nums.sum # => 57`
