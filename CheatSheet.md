@@ -456,3 +456,32 @@ end
 >10  
 >6  
 >2  
+
+#### Looping through Arrays
+
+**.each:**  
+We could loop through an array with the `.times` method but the easier way of doing it is with the `.each` method. Given an array, the `.each` method will loop through each element of the array starting with the very first one. 
+```
+cities = ["Chicago", "LA", "NYC"]
+cities.each do |city|
+  p city
+end
+```
+>"Chicago"  
+>"LA"  
+>"NYC"
+
+The block variable `city` holds the value of the elements in the array `cities`. It starts with the first element `"Chicago"` and then changes with each interation, holding the value of the next element (`"LA"`) in the array and so on.
+ 
+**.each_with_index:**  
+To keep a track of the iteration number while looping through an array, `.each_with_index` creates an additional block variable that starts of counting the iteration number starting at *zero*. After each execution of the code within the block, the block variable is incremented by 1.  
+```
+cities.each_with_index do |city, count|
+  p count.to_s + " " + city
+end
+```
+>"0 Chicago"  
+>"1 LA"  
+>"2 NYC"
+
+`city` holds the value of elements in the array `cities`. `count` holds the index of the element that `city` currently holds. 
