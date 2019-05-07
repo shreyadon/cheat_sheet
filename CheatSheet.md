@@ -179,9 +179,9 @@ Standard operations are similar to those for the Integer class. The only excepti
 `12.0 / 5 # => 2.4`  
 
 `**` **operator:**  
-The `**`operator for Floats can be used to calculate roots.  
-`9 ** 0.5 # => 3.0`  
-`8 ** (1/3.0)# => 2.0`  
+The `**`operator for Floats can additionally be used to calculate roots.  
+`9 ** 0.5 # => 3.0, since 9^(1/2) = sqaureroot of 9`  
+`8 ** (1/3.0)# => 2.0, since 8^(1/3) = cuberoot of 8`  
 
 **.round method:**  
 Returns the whole part of a decimal when not given any argument.  
@@ -203,6 +203,8 @@ Converts a float to an integer by rounding the float down to closest whole numbe
 **Creating a Date:**  
 To use the Date class in a Ruby program, we need to say:  
 `require "date"`  
+***Note:***
+Only *Ruby* programs need to have a `require` statement for the Date class. *Rails* already does this for you.
 
 **Date.new**  
 Use the `.new` method to create a new instance of a Date object. The `.new` method can be used with or without argument. When given no arguments, the default date is set to *Jan 1st, -4712 BCE*.
@@ -282,11 +284,11 @@ or
 **.at method:**  
 Takes an Integer argument and return the element in that position of an Array. The following lines of code show the various forms of the `.at` method and return the same output.  
 `cities.at(2)`  
-`cities.at[](2)`  
-`cities.[2]`  
+`cities.[](2)`   
+`cities[2]`
 >"New York City"
 
-***Notes:***
+***Note:***
 1. Ruby indexes the elements in an array starting at *zero*.
 2. Trying to access an element using an index greater than the length of the array will give you `nil`.  
 `cities.at(3) # => nil`
@@ -398,6 +400,9 @@ while condition
   # do something while condition is true
 end # jump back to the while statement
 ```
+***Note:***  
+If the condition next to the `while` always evaluates to be "truthy," then the program will be stuck in a neverending loop, infamously known as an
+**infinite loop**.
 
 #### Blocks
 **.times:**  
@@ -485,3 +490,6 @@ end
 >"2 NYC"
 
 `city` holds the value of elements in the array `cities`. `count` holds the index of the element that `city` currently holds. 
+
+***Note:***  
+Variables created as a block variables can only be used within that block (between `do` and `end`). Using that variable outside that block will throw an error.
