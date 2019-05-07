@@ -1,20 +1,17 @@
-## Hello World
+## CheatSheet.md
 
 ### Core syntax: 
-`object.method`
-or `object.method(args)` for methods that need arguments.
+`object.method` or `object.method(args)` for methods that need arguments.
+
+Syntax for creating a new variable of a Class and storing them in a varible:  
+`var = my_class.new`
 
 **.class method:**  
 Returns the class of the object.  
 `"Hello".class # => String`  
 `2.class # => Integer`  
 `2.3.class # => Float`
-
-Creating a new variable of a Class:  
-```
- var = Class.new
- str = String.new
- ```
+`var.class # => my_class`
 
 #### Exceptions:
 There are a few methods that do not follow the core syntax.
@@ -30,19 +27,14 @@ Similar to `p`, but the quotes around strings are removed.
 **gets (get string):**  
 Will pause the program and wait for the user to type something in the terminal and press return. Returns a String with the user's input.
 
-**Math operations:**  
-These will be covered in the Integer and Float sections.
-
 **rand:**  
-returns a random integer within a range when given an integer as an argument.  
+Returns a random integer within a range when given an integer as an argument.  
 `rand(3) # returns a whole number between 0 and 2`  
 returns a random decimal between 0 and 1 when not given any argument.  
 `rand # returns a decimal between 0 and 1`  
 
 ### Class String
 
-
-Ignore: Add notes on String interpolation. 
 **.concat (.+ / +) method:**  
 Appends the given arguments to a string. when given an integer as an argument, it converts the integer into ASCII code.  
 `"hi".concat(33)`
@@ -73,7 +65,7 @@ Converts all lowercase letters to their uppercase counterparts in the given stri
 > "HELLO"
 
 **.downcase method:**  
-Converts all the uppercase letters to their lowercase counterparts in th given string.
+Converts all the uppercase letters to their lowercase counterparts in the given string.
 
 `"HI".downcase`
 > "hi"
@@ -97,7 +89,7 @@ Returns the character length in a String as an integer.
 
 
 **.chomp method:**  
-When not given any argument, removes the "\n" (newline) character from the end of the string. when given an argument of a charcter or a string, it remove that argument from the **end** of the orginal string.  
+When not given any argument, removes the "\n" (newline) character from the end of the string. When given an argument of a charcter or a string, it remove that argument from the *end* of the orginal string.  
 `"Hey!\n".chomp`  
 `"Hey!".chomp("!")`  
 `"Hey!".chomp("y")`
@@ -128,7 +120,7 @@ Capitalizes the first character of a string.
 >"Capitalize"
 
 **.split method:**  
-Splits a string into an substrings and creates an Array of these substrings. when not given argument, .split uses whitespace to divide the string. when given an argument, .split uses that argument to divide the string.  
+Splits a string into an substrings and creates an Array of these substrings. when not given argument, `.split` uses whitespace to divide the string. when given an argument, `.split` divides the string on that argument.  
 `"Hello hi byebye".split`
 >["Hello", "hi", "byebye"]
 
@@ -138,7 +130,7 @@ Splits a string into an substrings and creates an Array of these substrings. whe
 ### Class Integer
 whole numbers
 
-Math Operations for the Integer Class:  
+**Math Operations for the Integer Class:**   
 `12 + 5 # => 17`  
 `12 - 5 # => 7 `  
 `12 * 5 # => 60`  
@@ -146,15 +138,13 @@ Math Operations for the Integer Class:
 The `/` operator for integers only returns a whole number and omits the remainder.
 
 `%` **(modulus) operator:**  
-Returns the remainder from a division operation.  
+Returns the remainder from a divisions.  
 `13 / 5 # => 3`
 
 `**` **operator:**  
 Raises a number to a power.  
 `3 ** 2 # => 9`  
 `2 ** 3 # => 8`
-
-
 
 **.odd? and .even? methods:**  
 Returns a *boolean* based on whether the integer is odd or even.  
@@ -181,7 +171,7 @@ converts an integer to a float(decimal).
 ### Class Float
 decimals
 
-Math Operations for the Float Class:  
+**Math Operations for the Float Class:**  
 Standard operations are similar to those for the Integer class. The only exception is the `/` operator which returns fractional results.  
 `12 / 5 # => 2`  
 `12.0 / 5.0 # => 2.4`  
@@ -215,7 +205,7 @@ To use the Date class in a Ruby program, we need to say:
 `require "date"`  
 
 **Date.new**  
-Use the `.new` method to create a new instance of a Date object. The `.new` method can be used with or without argument. When given no arguments, the default date is set to ***Jan 1st, -4712 BCE***.
+Use the `.new` method to create a new instance of a Date object. The `.new` method can be used with or without argument. When given no arguments, the default date is set to *Jan 1st, -4712 BCE*.
 ```
 Date.new                  # => #<Date: -4712-01-01 ((0j,0s,0n),+0s,2299161j)>
 Date.new(2001)            # => #<Date: 2001-01-01 ...>
@@ -369,15 +359,15 @@ person1.store(:last_name, "Betina")
 person1.store(:role, "Instructor")
 # => person1 = {:first_name=>"Raghu", :last_name=>"Betina", :role=>"Instructor"}
 ```
-or  
+or we can fill up a hash by typing in the hash literal  
 `person2 = { :first_name => "Jocelyn", :last_name => "Williams", :role => "Student" }`
 
 ***Note:***
 1. Ruby represents each key/value pair by separating them with a `=>`, known as a "hash rocket."
-2. If the key already exists when you try to `.store` something under it, its value will be replaced.
+2. If the value associated with a key already exists when you try to `.store` something under it, its value will be replaced.
 
 **.fetch method:**  
-Retrieves the data held by a key.  
+Both `.fetch` and `.[]` can be used to retrieves the data held by a key.
 `person1.fetch(:last_name)# => "Betina"`  
 `person2.[:last_name] # => "Williams"` 
 
@@ -385,3 +375,84 @@ If `.fetch` is given key that is not present in the hash, it will throw an error
 
 Fallback: pass in a second default argument that `.fetch` will return if the key is not present in the hash.  
 `person1.fetch(:middle_name, "None provided") # => "None provided"`
+
+### Conditionals
+
+Basic Anatomy of multibranch `if` statements:
+```
+if condition1
+  # do something if condition1 is true
+elif condition2
+  # do something if condition2 is true
+else # if both condition1 and condition2 were falsy
+  # do something else
+end
+```
+**Don't forget the `end` keyword.**
+
+### Loops
+**while statements:**  
+`while` is similar to `if`. The difference is everytime the execution of the program reaches the `end` it jumps back and evaluates the *truthiness* of the condtion next to the `while` statement and decides whether or not to execute the code within the `while` loop.
+```
+while condition 
+  # do something while condition is true
+end # jump back to the while statement
+```
+
+#### Blocks
+**.times:**  
+The `.times` method will execute the code within a block the number of times specified by the integer. A block of code is the code written in between the keywords `do` and `end`.
+```
+10.times do
+  p "Hi"
+end
+```
+The above block of code will print "Hi" 10 times all on newlines. 
+
+To keep a track of the iteration number, `.times` can create a block variable that starts of counting the iteration number starting at *zero*. After each execution of the code within the block, the block variable is incremented by 1.  
+
+```
+10.times do |counter|
+  p counter
+end
+```
+The above block of code will print the numbers 0 to 9 all on newlines. 
+
+#### Other methods
+**.upto:**    
+```
+5.upto(10) do |counter|
+  # do something
+end
+```
+The above block of code starts the block variable `counter` at 5 and executes the block until counter is 10. 
+
+**.downto:**  
+`.downto` is similar to `.upto` except instead of incrementing the block varible, it decrements the block varible by 1.
+```
+10.downto(5) do |counter|
+  # do something
+end
+```
+The above block of code starts the block variable `counter` at 10 and executes the block until counter is 5. 
+
+**.step:**
+```
+1.step(10, 3) do |counter|
+  p counter
+end
+```
+> 1  
+> 4  
+> 7  
+> 10  
+
+The above block of code starts the block variable `counter` at 1 and executes the block until counter is 10 but after each iteration the `counter` will be incremented by 3 instead of 1. `.step` can also be used to decrement the counter by a certain value. 
+```
+10.step(1, -4) do |counter|
+  p counter
+end
+```
+>10  
+>6  
+>2  
