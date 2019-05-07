@@ -107,9 +107,6 @@ Contact.where("last_name >= ? AND last_name <= ?", "A", "C")`
 Contact.where({ :last_name => ("A".."C") })
 # will return a collection of contacts whose last_names range from "A" to ""
 ```
-***Note:***  
-With Ruby `Range`s, two dots means inclusive of the second value, and three dots means exclusive of the second value. E.g., (1..4) is 1, 2, 3, and 4; (1...4) is only 1, 2, and 3.
-
 **.or:**  
 You can also broaden your search criteria by using the `.or` method.
 `Contact.where({ :first_name => "Mickey" }).or(Contact.where({ :last_name => "Betina" })) # will return a collection of contacts whose first_name = "Mickey" or last_name = "Betina"`  

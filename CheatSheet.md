@@ -28,10 +28,15 @@ Similar to `p`, but the quotes around strings are removed.
 Will pause the program and wait for the user to type something in the terminal and press return. Returns a String with the user's input.
 
 **rand:**  
-Returns a random integer within a range when given an integer as an argument.  
+Returns a random integer within a range when given an Integer as an argument.  
 `rand(3) # returns a whole number between 0 and 2`  
-returns a random decimal between 0 and 1 when not given any argument.  
+Returns a random integer between the lower limit and the upper limit when given a Range as an argument.  
+`rand(1..10) # returns a whole number between 1 and 10, including 1 and 10`
+Returns a random decimal between 0 and 1 when not given any argument.  
 `rand # returns a decimal between 0 and 1`  
+
+***Note:***  
+With Ruby `Range`s, two dots means inclusive of the second value, and three dots means exclusive of the second value. E.g., (1..4) is 1, 2, 3, and 4; (1...4) is only 1, 2, and 3.
 
 ### Class String
 
