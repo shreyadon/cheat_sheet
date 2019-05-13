@@ -36,14 +36,17 @@ Returns a random decimal between 0 and 1 when not given any argument.
 `rand # returns a decimal between 0 and 1`  
 
 ***Note:***  
-With Ruby `Range`s, two dots means inclusive of the second value, and three dots means exclusive of the second value. E.g., (1..4) is 1, 2, 3, and 4; (1...4) is only 1, 2, and 3.
+With Ruby `Range`s, two dots means inclusive of the second value, and three dots means exclusive of the second value. E.g., `(1..4)` is 1, 2, 3, and 4; `(1...4)` is only 1, 2, and 3.
 
 ### Class String
 
 **.concat (.+ / +) method:**  
 Appends the given arguments to a string. when given an integer as an argument, it converts the integer into ASCII code.  
 `"hi".concat(33)`
-> "hi!"
+> "hi!"   
+
+`"Rub".concat(121)`  
+>"Ruby"
 
 When given a string literal as an argument, it adds that string to the original string. `.+` or `+` is shorthand for `.concat` method. Each line of code below will give the same output.  
 `"hi".concat(" there")`  
@@ -63,29 +66,31 @@ Multiplies the original string by the given integer.
 `"Ya" * 5`
 > "YaYaYaYaYa"
 
-**.upcase method:**  
-Converts all lowercase letters to their uppercase counterparts in the given string.
+`"Ya" * 0`
+> ""
 
+**.upcase method:**  
+Converts all lowercase letters to their uppercase counterparts in the given string.  
 `"hello".upcase`
 > "HELLO"
 
 **.downcase method:**  
-Converts all the uppercase letters to their lowercase counterparts in the given string.
-
+Converts all the uppercase letters to their lowercase counterparts in the given string.  
 `"HI".downcase`
 > "hi"
 
 **.swapcase method:**  
-Converts all the uppercase letters to their lowercase counterparts and lowercase letters to their uppercase counterparts in the given string.
-
+Converts all the uppercase letters to their lowercase counterparts and lowercase letters to their uppercase counterparts in the given string.  
 `"Hi There".swapcase`
 > "hI tHERE"
 
+`"hI tHERE".swapcase`
+> "Hi There"
+
 **.reverse method:**     
 Returns a new String with the characters from the original String in reverse order.  
-`"stressed".reverse`
-
-> "desserts"
+`"stressed".reverse`  
+> "desserts"  
 
 **.length method:**  
 Returns the character length in a String as an integer.  
@@ -97,22 +102,66 @@ Returns the character length in a String as an integer.
 When not given any argument, removes the "\n" (newline) character from the end of the string. When given an argument of a charcter or a string, it remove that argument from the *end* of the orginal string.  
 `"Hey!\n".chomp`  
 `"Hey!".chomp("!")`  
+`"Hey There".chomp("There")`  
 `"Hey!".chomp("y")`
+>"Hey!"  
+>"Hey"  
+>"Hey "  
 >"Hey!"
 
->"Hey"
+```
+p "What is your name?"
+name = gets # supposes the user inputs "Clark" and then hits return
+p "Hi" + name
+```
+>"Hi Clark\n"  
 
->"Hey!"
+```
+p "What is your name?"
+name = gets # supposes the user inputs "Clark" and then hits return
+p "Hi" + name.chomp
+```
+>"Hi Clark"
+
+```
+p "What is your name?"
+name = gets.chomp # supposes the user inputs "Clark" and then hits return
+p "Hi" + name
+```
+>"Hi Clark"
 
 **.gsub method:**  
 Substitutes the all occurances of the first argument with the second argument in original string.  
 `"Hello".gsub("ello", "i")`
->"Hi"
+>"Hi"  
+
+`"Hi.there".gsub(".", " ")`  
+>"Hi there"  
+
+Giving an empty string as the second arugment deletes any occurences of the first arugument in the string.   
+`"example @ ruby.com".gsub(" ", "")`  
+>"example@ruby.com" 
 
 **.to_i method:**  
 Converts a string literal that contains a number to an integer.  
 `"8".to_i`
 >8
+
+```
+p "What is your lucky number?"
+lucky_number = gets.chomp # Suppose the user types is "7" and then hits return
+square = lucky_number ** 2 # This will throw an error.
+```
+>NoMethodError (undefined method '**' for "7":String)
+
+This is where the `.to_s` method comes handy.
+```
+p "What is your lucky number?"
+lucky_number = gets.chomp # Suppose the user types is "7" and then hits return
+square = lucky_numbe.to_i ** 2 # This will throw an error.
+p square
+```
+>"49"
 
 **.strip method:**  
 Removes all leading and trailing whitespace in the string.  
@@ -156,6 +205,12 @@ Returns a *boolean* based on whether the integer is odd or even.
 `7.odd?`
 >true
 
+`8.odd?`
+>false
+
+`8.even?`
+>false
+
 `7.even?`
 >false
 
@@ -164,6 +219,20 @@ Converts an integer to a string literal.
 `8.to_s`
 >"8"
 
+```
+lucky_number = rand(10) # assigns a random integer between 0 to 9 to the variable lucky_number
+p "My lucky number is " + lucky_number + "!" 
+```
+The above block of code won't work and will throw an error. 
+>**TypeError (no implicit conversion of Integer into String)**
+
+This is where the `.to_s` method comes handy. 
+```
+lucky_number = rand(10) # assigns a random integer between 0 to 9 to the variable lucky_number
+p "My lucky number is " + lucky_number.to_i + "!" 
+```
+>"My lucky number is 7!"
+
 `"There are " + 7.to_s + " pineapples."`
 >"There are 7 pineapples"
 
@@ -171,7 +240,6 @@ Converts an integer to a string literal.
 converts an integer to a float(decimal).  
 `7.to_f`
 >7.0
-
 
 ### Class Float
 decimals
@@ -202,6 +270,14 @@ Converts a float to an integer by rounding the float down to closest whole numbe
 
 `"8.1".to_i`  
 >8
+
+#### Integer and Float division examples
+`12 / 5 # => 2`  
+`(12 / 5).to_f # => 2.0`  
+`12.to_f / 5 # => 2.4`  
+`12 / 5.to_f # => 2.4`  
+`(12.0 / 5 ).to_i # => 2`  
+`(12 / 5.0).to_i # => 2`  
 
 ### Class Date
 
@@ -283,7 +359,7 @@ cities.push("Los Angeles")
 cities.push("New York City")
 ```
 or  
-`cities = ["Chicago", "Los Angeles", "New York City"]`
+`cities = ["Chicago", "Los Angeles", "New York City"] # Initializes and adds elements to an Array`
 > cities = ["Chicago", "Los Angeles", "New York City"]
 
 **.at method:**  
@@ -294,7 +370,7 @@ Takes an Integer argument and return the element in that position of an Array. T
 >"New York City"
 
 ***Note:***
-1. Ruby indexes the elements in an array starting at *zero*.
+1. Ruby indexes the elements in an array starting at *zero*, that is, the first element of an array will have the index *zero*.
 2. Trying to access an element using an index greater than the length of the array will give you `nil`.  
 `cities.at(3) # => nil`
 3. Using a negative index will retrieve elements from the end of the least.   
@@ -318,6 +394,7 @@ Returns the number of elements in a list, when give no arguments. If given an ar
 nums = [8, 3, 1, 19, 23, 3]
 nums.count # => 6
 nums.count(3) # => 2
+nums.count(2) # => 0
 ```
 
 **.reverse method:**  
@@ -328,18 +405,27 @@ Returns a new Array with the elements of the original Array but in the reversed 
 Returns a new Array with the elements of the original Array but in the sorted in increasing order.  
 `nums.sort # => [1, 3, 3, 8, 19, 23]`
 
+**Example: Sorting an Array in decreasing order**
+```
+nums = [8, 3, 1, 19, 23, 3]
+nums.sort # => [1, 3, 3, 8, 19, 23] 
+nums.reverse # => [3, 23, 19, 1, 3, 8] 
+nums.sort.reverse # => [23, 19, 8, 3, 3, 1], first sorts then reverses the Array. 
+```
 **.shuffle method:**  
 Returns a new Array with the elements of the original Array but with the order shuffled randomly.  
-`nums.shuffle # => [3, 23, 8, 19, 1, 3]`
+`nums.shuffle # => [3, 23, 8, 19, 1, 3]`  
+`nums.shuffle # => [19, 3, 1, 8, 3, 23]` 
 
 **.sample method:**  
 Returns a random element from the array.  
-`nums.sample # => 23`
+`nums.sample # => 23`  
+`nums.sample # => 3`
 
 **.min and .max methods:**  
 Retrieve the elements of minimum and the maximum values in the array.  
 `nums.min # => 1`  
-`nums.last # => 23`
+`nums.max # => 23`
 
 **.sum method:**  
 Returns the sum of all the elements in the array.  
@@ -389,10 +475,23 @@ Basic Anatomy of multibranch `if` statements:
 ```
 if condition1
   # do something if condition1 is true
-elif condition2
+elsif condition2
   # do something if condition2 is true
 else # if both condition1 and condition2 were falsy
   # do something else
+end
+```
+
+**Example:**
+```
+p "Type a number less than 10 and greater than 0:"
+user_input = gets.chomp.to_i # gets user input, removes newline character, converts the string to integer. 
+if user_input == 5 
+  p "You win!" # Will print this if the user input is 5
+elsif user_input < 10 && user_input > 0 # check if the user input is valid
+  p "You lose!" # Will print this if the user input is between 1 and 9
+else
+  p "You didn't type in a valid number." # Will print this if the user input is not between 1 and 9
 end
 ```
 **Don't forget the `end` keyword.**
@@ -405,6 +504,21 @@ while condition
   # do something while condition is true
 end # jump back to the while statement
 ```
+
+**Example:**
+```
+limit = 5
+while limit > 0 
+  p limit
+  limit = limit - 1
+end 
+```
+>5  
+>4  
+>3  
+>2  
+>1  
+
 ***Note:***  
 If the condition next to the `while` always evaluates to be "truthy," then the program will be stuck in a neverending loop, infamously known as an
 **infinite loop**.
